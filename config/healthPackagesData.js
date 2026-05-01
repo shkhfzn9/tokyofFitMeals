@@ -1,0 +1,88 @@
+export const healthPackages = [
+  {
+    category: "clinical",
+    icon: "🏋️",
+    title: "High Protein Diet",
+    className: "muscle-gain",
+    desc: "Protein-forward meals structured to support muscle hypertrophy, recovery, and prolonged satiety.",
+    bestFor: "Best suited for bodybuilders, athletes, and those undergoing intense resistance training.",
+    features: ["45g+ Protein per meal", "Lean meat focuses", "Amino-acid dense"],
+    basePricePerMeal: 230,
+  },
+  {
+    category: "clinical",
+    icon: "🔥",
+    title: "Fat Loss Diet",
+    className: "weight-loss",
+    desc: "Volumetrics-based meals designed for a sustainable caloric deficit without compromising on micronutrients.",
+    bestFor: "Best suited for individuals aiming to shed body fat while retaining lean muscle mass.",
+    features: ["Calorie restricted", "High fiber volume", "Metabolism boosting"],
+    basePricePerMeal: 210,
+  },
+  {
+    category: "clinical",
+    icon: "⚖️",
+    title: "Balanced Meal Plan",
+    className: "general-wellness",
+    desc: "A perfectly split macronutrient ratio (40:30:30) of carbs, proteins, and fats for everyday optimal functioning.",
+    bestFor: "Best suited for busy professionals seeking convenience without sacrificing daily nutrition.",
+    features: ["Perfect macro split", "Energy sustaining", "Brain-boosting fats"],
+    basePricePerMeal: 195,
+  },
+  {
+    category: "clinical",
+    icon: "🩸",
+    title: "Diabetic Care",
+    className: "weight-loss",
+    desc: "Low glycemic index, sugar-free meals with balanced complex carbohydrates to stabilize blood sugar levels.",
+    bestFor: "Best suited for individuals managing Type 2 Diabetes, prediabetes, or insulin resistance.",
+    features: ["Low GI ingredients", "Zero added sugar", "High soluble fiber"],
+    basePricePerMeal: 250,
+  },
+  {
+    category: "clinical",
+    icon: "🫘",
+    title: "Kidney Care",
+    className: "general-wellness",
+    desc: "Low sodium, controlled potassium and phosphorus meals featuring highly bioavailable, easily digestible proteins.",
+    bestFor: "Best suited for individuals with CKD (Chronic Kidney Disease) or compromised renal function.",
+    features: ["Low sodium (<1500mg)", "Controlled potassium", "Renal-specific macros"],
+    basePricePerMeal: 260,
+  },
+  {
+    category: "clinical",
+    icon: "🛡️",
+    title: "Cancer Care",
+    className: "muscle-gain",
+    desc: "Extremely nutrient-dense, easy to swallow, and digestion-friendly meals packed with powerful antioxidants.",
+    bestFor: "Best suited for patients undergoing chemotherapy seeking immune and strength recovery.",
+    features: ["Antioxidant-rich", "Immunity boosting", "Soft texture options"],
+    basePricePerMeal: 280,
+  },
+  {
+    category: "clinical",
+    icon: "❤️",
+    title: "Heart Care",
+    className: "heart-health",
+    desc: "Omega-3 rich meals with extremely low saturated fats and zero trans fats to support cardiovascular health.",
+    bestFor: "Best suited for those managing hypertension, high cholesterol, or active cardiovascular risk.",
+    features: ["Omega-3 rich foods", "Heart-healthy olive oil", "Cholesterol lowering"],
+    basePricePerMeal: 240,
+  },
+  {
+    category: "custom",
+    icon: "👩‍⚕️",
+    title: "Customize Your Own Meal",
+    className: "weight-loss", 
+    desc: "A bespoke meal plan engineered block-by-block by our clinical nutritionists based on your specific blood work.",
+    bestFor: "Best suited for highly specific medical conditions naturally intersecting with multiple allergies or restrictions.",
+    features: ["Blood report analysis", "1-on-1 Consults", "Unlimited flexibility"],
+    basePricePerMeal: 320,
+  },
+];
+
+export const getDiscountPercentage = (months) => {
+  if (months === 3) return 0.10; // 10%
+  if (months === 6) return 0.15; // 15%
+  return 0; // 1 Month
+};
