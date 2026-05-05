@@ -1,70 +1,43 @@
 "use client";
 
-import { useState } from "react";
-import PlanModal from "./PlanModal";
-import { healthPackages, getDiscountPercentage } from "@/config/healthPackagesData";
+import { healthPackages } from "@/config/healthPackagesData";
 
 export default function HealthPackages() {
-  const [mealsPerDay, setMealsPerDay] = useState(2);
-  const [durationMonths, setDurationMonths] = useState(1);
-  const [selectedPackage, setSelectedPackage] = useState(null);
-
-  const calculatePricing = (basePrice) => {
-    const totalMeals = mealsPerDay * 30 * durationMonths;
-    const grossPrice = basePrice * totalMeals;
-    const discountPercent = getDiscountPercentage(durationMonths);
-    const discountAmount = grossPrice * discountPercent;
-    const finalPrice = grossPrice - discountAmount;
-
-    return {
-      gross: Math.round(grossPrice),
-      final: Math.round(finalPrice),
-      isDiscounted: discountPercent > 0,
-      monthlyInstallment: Math.round(finalPrice / durationMonths)
-    };
-  };
 
   return (
     <section className="packages-section section clinical-theme" id="packages">
-      <div className="container" style={{ maxWidth: '100%', paddingLeft: 'max(1rem, calc((100% - 1200px) / 2))', paddingRight: '0' }}>
-        {/* We unconstrain the container for the scrolling area to bleed to edge */}
-        <div style={{ paddingRight: 'max(1rem, calc((100% - 1200px) / 2))' }}>
-          <div className="section-header">
-            <div className="section-label" style={{ color: "#2ECC71" }}>Health Plans</div>
-            <h2 className="section-title">Specialized Care. Delivered.</h2>
-            <p className="section-subtitle">
-              Nutritionist-prescribed, targeted meal plans for lifestyle goals and specific medical conditions.
-            </p>
-          </div>
-
-          {/* --- CALCULATOR CONTROLS --- */}
-          <div className="calculator-controls">
-            <div className="control-group">
-              <span className="control-label">Meals Per Day</span>
-              <div className="segment-control">
-                <button className={mealsPerDay === 1 ? "active" : ""} onClick={() => setMealsPerDay(1)}>1 Meal</button>
-                <button className={mealsPerDay === 2 ? "active" : ""} onClick={() => setMealsPerDay(2)}>2 Meals</button>
-                <button className={mealsPerDay === 3 ? "active" : ""} onClick={() => setMealsPerDay(3)}>3 Meals</button>
-              </div>
-            </div>
-
-            <div className="control-group">
-              <span className="control-label">Duration <span className="save-badge">Save ~10%</span></span>
-              <div className="segment-control">
-                <button className={durationMonths === 1 ? "active" : ""} onClick={() => setDurationMonths(1)}>1 Month</button>
-                <button className={durationMonths === 3 ? "active" : ""} onClick={() => setDurationMonths(3)}>3 Months</button>
-                <button className={durationMonths === 6 ? "active" : ""} onClick={() => setDurationMonths(6)}>6 Months</button>
-              </div>
-            </div>
+      <div className="container">
+        <div className="section-header" style={{ textAlign: 'center' }}>
+          <div className="section-label" style={{ color: "#2ECC71", justifyContent: 'center' }}>Health Plans</div>
+          <h2 className="section-title">Specialized Care. Delivered.</h2>
+          <p className="section-subtitle" style={{ margin: '0 auto' }}>
+            Nutritionist-prescribed, targeted meal plans for lifestyle goals and specific medical conditions.
+          </p>
+          <div style={{ 
+            marginTop: '1.5rem', 
+            display: 'inline-block', 
+            background: 'rgba(231, 76, 60, 0.1)', 
+            color: '#E74C3C', 
+            padding: '8px 20px', 
+            borderRadius: '50px', 
+            fontWeight: '700',
+            fontSize: '0.9rem',
+            letterSpacing: '0.05em'
+          }}>
+            🚀 COMING SOON
           </div>
         </div>
 
-        {/* --- PACKAGES GRID (SCROLLABLE) --- */}
-        <div className="packages-grid horizontal-scroll" style={{ marginTop: "3rem" }}>
+        {/* --- PACKAGES GRID --- */}
+        <div className="packages-grid" style={{ 
+          marginTop: "4rem", 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '2rem'
+        }}>
           {healthPackages.map((pkg) => {
-            const pricing = calculatePricing(pkg.basePricePerMeal);
             return (
-              <div key={pkg.title} className={`package-card ${pkg.className}`}>
+              <div key={pkg.title} className={`package-card ${pkg.className}`} style={{ opacity: 0.8, filter: 'grayscale(0.2)' }}>
                 <div className="package-icon">{pkg.icon}</div>
                 <h3 className="package-title">{pkg.title}</h3>
                 <p className="package-desc">{pkg.desc}</p>
@@ -88,44 +61,22 @@ export default function HealthPackages() {
                   ))}
                 </div>
                 
-                <div className="package-pricing-box" style={{ marginTop: 'auto' }}>
-                  {pricing.isDiscounted && (
-                    <div className="original-price">
-                      <span>₹{pricing.gross.toLocaleString()}</span>
-                    </div>
-                  )}
-                  <div className="package-price" style={{ color: "#E74C3C" }}>
-                    ₹{pricing.final.toLocaleString()} 
-                    <span className="period" style={{ fontSize: '0.85rem', marginLeft: '6px', color: '#889f92' }}>total</span>
-                  </div>
-                  {durationMonths > 1 && (
-                    <div className="monthly-breakdown">
-                      That's ₹{pricing.monthlyInstallment.toLocaleString()} / month
-                    </div>
-                  )}
+                <div style={{ marginTop: 'auto', paddingTop: '2rem' }}>
+                  <button 
+                    className="btn btn-outline" 
+                    style={{ width: "100%", cursor: 'not-allowed', opacity: 0.6 }}
+                    disabled
+                  >
+                    Launching Soon
+                  </button>
                 </div>
-                <button 
-                  className="btn btn-primary" 
-                  style={{ width: "100%", marginTop: "1.5rem" }}
-                  onClick={() => setSelectedPackage(pkg)}
-                >
-                  Select Plan
-                </button>
               </div>
             );
           })}
-          {/* Spacer to make sure the last card has padding on the right when scrolled */}
-          <div style={{ flex: '0 0 max(1rem, calc((100vw - 1200px) / 2))' }}></div>
         </div>
       </div>
 
-      <PlanModal 
-        isOpen={!!selectedPackage} 
-        onClose={() => setSelectedPackage(null)} 
-        pkg={selectedPackage}
-        mealsPerDay={mealsPerDay}
-        durationMonths={durationMonths}
-      />
+
     </section>
   );
 }

@@ -3,11 +3,10 @@ import TrustBanner from './components/TrustBanner';
 import TrustBadges from './components/TrustBadges';
 import Hero from './components/Hero';
 import HowItWorks from './components/HowItWorks';
-import MenuSection from './components/MenuSection';
 import HealthPackages from './components/HealthPackages';
 import SubscriptionPlans from './components/SubscriptionPlans';
 import Customization from './components/Customization';
-import AllDishesList from './components/AllDishesList';
+import DetailedMenu from './components/DetailedMenu';
 import NutritionPhilosophy from './components/NutritionPhilosophy';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
@@ -25,11 +24,10 @@ export default function Home() {
         <Hero />
         <TrustBadges />
         <HowItWorks />
-        <MenuSection />
-        <HealthPackages />
+        <DetailedMenu />
         <SubscriptionPlans />
+        <HealthPackages />
         <Customization />
-        <AllDishesList />
         <NutritionPhilosophy />
         <Testimonials />
         <FAQ />
